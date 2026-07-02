@@ -438,10 +438,18 @@ def home():
 def get_address_url(address):
     return jsonify(get_address_details(address))
 
+from flask import Response
+import json
+
 @app.route('/search', methods=['POST'])
 def search_address():
     address = request.form.get('address')
-    return jsonify(get_address_details(address))
+    data = get_address_details(address)
+
+    return Response(
+        json.dumps(data, indent=4, ensure_ascii=False),
+        mimetype="application/json"
+    )
 
 if __name__ == "__main__":
     print("🚀 Starting AI-Powered Address Parser (100% Accurate Timezone)...")
