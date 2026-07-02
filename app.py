@@ -443,6 +443,13 @@ def search_address():
     address = request.form.get('address')
     return jsonify(get_address_details(address))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("🚀 Starting AI-Powered Address Parser (100% Accurate Timezone)...")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+
+    port = int(os.environ.get("PORT", 5000))
+
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False
+    )
